@@ -12,13 +12,16 @@
 
 	//Model for containing information received from the inputs
 	App.Models.BlogPost = Backbone.Model.extend ({
-		idAttribute:'_.id',
+		idAttribute:'_id',
 		defaults: {
 			title: '',
 			body: '...'
 		},
 		url: "http://tiny-pizza-server.herokuapp.com/collections/posts"
 	});
+
+////////////////Collections///
+/////////////////////////////
 
 ////////////////Views////////	
 ////////////////////////////
@@ -60,12 +63,10 @@
 				body: body
 			});
 			this.model.save();
+
 		},
 
 	});
-
-////////////////Collections///
-/////////////////////////////
 
 ////////////////Glue Code/////	
 /////////////////////////////
