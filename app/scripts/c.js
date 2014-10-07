@@ -11,10 +11,11 @@
 /////////////////////////////
 
 	App.Models.BlogPost = Backbone.Model.extend ({
-		idAttribute: '_id'
+		idAttribute: '_id',
 
 		defaults: {
-			title: ''
+			title: '',
+			body: '...'
 		}
 	});
 
@@ -23,28 +24,31 @@
 
 	App.Router = Backbone.Router.extend ({
 		initialize: function (){
-			Var collection = new App.Collections.BlogPosts();
-			this.collectionFetch = collection.fetch();
+			this.collection = new App.Collections.BlogPosts();
+			this.collectionFetch = this.collection.fetch();
 
 			new App.Views.BlogListView({
-				collection: collection
+				collection: this.collection
 			});
 		},
 
 		routes: {
-			'#/:id': 'showPost'
+			':id': 'showPost'
 		},
 
 		showPost: function (id){
+			console.log('hey');
 			$('.post-view').empty();
+			console.log(this.collection);
 			var self = this;
+			console.log(self.collection);
 			this.collectionFetch.done(function (posts){
 				var post = self.collection.get(id);
-				new BlogDetailView ({
+				new App.Views.BlogDetailView ({
 					model: post,
 					$container: $('.post-view')
-				})
-			})
+				});
+			});
 		}
 	});
 
@@ -91,8 +95,25 @@
 		},
 
 		render: function (){
-			console.log(this.model);
-			this.$el.append(this.model.get('title'));
+			this.$el.append('<a href = "#/'+this.model.get("_id")+'">'+this.model.get("title")+'</a>');
+		}
+	});
+
+	App.Views.BlogDetailView = Backbone.View.extend ({
+		template: _.template($('#templates-blog-detail').text()),
+
+		initialize: function (opts){
+			var options = _.defaults({}, opts, {
+				$container: $('.post-view')
+			});
+			
+			options.$container.append(this.el);
+
+			this.render();
+		},
+
+		render: function (){
+			this.$el.html(this.template(this.model.toJSON()));
 		}
 	});
 
@@ -100,6 +121,7 @@
 ////////////////Glue Code/////	
 /////////////////////////////
 	$(document).ready(function (){
+		new App.Router();
 		Backbone.history.start();
 	});
 })();
