@@ -23,27 +23,6 @@
   </head>
   <body>
 
-    <div class="hero-unit">
-      <h1>'Allo, 'Allo!</h1>
-      <p>You now have</p>
-      <ul>
-        <li>HTML5 Boilerplate</li>
-        <li>Normalize CSS</li>
-
-        <li>Sass</li>
-
-
-        <li>Modernizr</li>
-
-
-        <li>Bourbon & Neat</li>
-
-
-        <li>UnderscoreJS</li>
-
-      </ul>
-      <p>Don't forget to update your readme file!!</p>
-    </div>
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
@@ -53,8 +32,13 @@
     <!-- endbower -->
     <!-- endbuild -->
 
+    <script type=text/template id="templates-bookmark-form">
+        <label>URL</label><input type="text" name="url" class="url" />
+        <label>Title</label><input type="text" name="title" class="title"/>
+        <label>Tags</label><input type="text" name="tags" class="tags" />
+    </script>
         <!-- build:js scripts/main.js -->
-        <script src="scripts/main.js"></script>
+        <script src="scripts/d.js"></script>
         <!-- endbuild -->
 </body>
 </html>

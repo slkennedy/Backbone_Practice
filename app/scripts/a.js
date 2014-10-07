@@ -17,7 +17,7 @@
 			title: '',
 			body: '...'
 		},
-		url: "http://tiny-pizza-server.herokuapp.com/collections/posts"
+		urlRoot: "http://tiny-pizza-server.herokuapp.com/collections/posts"
 	});
 
 ////////////////Collections///
@@ -63,9 +63,7 @@
 				body: body
 			});
 			this.model.save();
-
 		},
-
 	});
 
 ////////////////Glue Code/////	

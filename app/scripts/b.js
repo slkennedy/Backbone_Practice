@@ -32,7 +32,7 @@
 			phone: ''
 		},
 
-		url:"http://tiny-pizza-server.herokuapp.com/collections/people",
+		urlRoot:"http://tiny-pizza-server.herokuapp.com/collections/people",
 	});
 
 ////////////////Collections///
