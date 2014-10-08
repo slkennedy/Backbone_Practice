@@ -40,10 +40,17 @@
 		},
 
 		routes: {
-			':id': 'bookmarkTags'
+			'bookmarks/:tag': 'bookmarkTags'
 		},
 
-		
+		bookmarkTags: function (tag){
+			var tagged = this.collection.findWhere({tags: tag});
+			$('.bookmark').empty();
+			var tagView = new App.Views.BookmarksView ({
+				$container: $('.bookmark'), 
+				model: tag
+			})
+		}
 
 	});
 
@@ -175,9 +182,24 @@
 		},
 
 		render: function (){
-			this.$el.append('<a href = "#/'+this.model.get("_id")+'">'+this.model.get("tags")+'</a>');
+			this.$el.append('<a href = "#/bookmark/'+this.model.get("_id")+'">'+this.model.get("tags")+'</a>');
 		}
 	});
+
+	// App.Views.SelectedTag = Backbone.View.extend ({
+	// 	tagName: 'li',
+	// 	className: 'bookmark',
+
+	// 	initialize: function(){
+	// 		$('.tags-view').append(this.el);
+	// 		this.render();
+	// 	},
+
+	// 	render: function (){
+	// 		$('.bookmarks-view').empty();
+	// 		this.$el.append('<a href = "#/bookmark/'+this.model.get("_id")+'">'+this.model.get("tags")+'</a>');
+	// 	}
+	// });
 
 ////////////////Glue Code/////	
 /////////////////////////////
